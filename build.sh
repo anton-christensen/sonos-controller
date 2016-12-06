@@ -1,1 +1,1 @@
-electron-packager . --appname="Sonos Controller" --icon="sonos-icon.ico"
+electron-packager . --appname="Sonos Controller" --icon="sonos-icon.ico" --overwrite

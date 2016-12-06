@@ -103,6 +103,10 @@ span {
     background-repeat: no-repeat;
 }
 
+.sec-now-playing {
+    overflow: hidden;
+}
+
 .sec-now-playing > * {
     float: left;
     width: 48%;
@@ -158,6 +162,90 @@ span {
     width: 0%;
     height: 100%;
     transition: 1s linear;
+}
+
+.play-controls {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 50px;
+    width: 200px;
+}
+
+.play-controls svg {
+    stroke: #fff;
+    fill: none;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-width: 5;
+    transition: stroke .2s;
+}
+.play-controls > *:hover svg {
+    stroke: #00B2EC;
+}
+
+.play-controls > * {
+    height: 50px;
+    width: 50px;
+    float: left;
+}
+
+.play-controls .play-pause {
+    margin: 0 25px;
+    position: relative;
+}
+
+.play-controls .play-pause .animatable {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.animatable > span {
+    width: 40%;
+    display: block;
+    height: 2.5px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: transform .5s, background-color .2s;
+}
+
+.pause .animatable .l1 {
+    transform: translateX(30%) rotate(90deg);
+}
+
+.pause .animatable .l2 {
+    transform: translateX(30%) rotate(-90deg);
+}
+
+.pause .animatable .l3 {
+    transform: translateX(-30%) rotate(90deg);
+}
+
+.play-pause:hover .animatable > span {
+    background-color: #00B2EC;
+}
+
+.play .animatable .l1 {
+    transform: translate(2px, -6px) rotate(34deg) scaleX(1.1);
+}
+.play .animatable .l2 {
+    transform:  translateX(-7px) rotate(90deg) scaleX(1.2);
+}
+.play .animatable .l3 {
+    transform: translate(2px, 6px) rotate(-34deg) scaleX(1.1);
 }
 
 

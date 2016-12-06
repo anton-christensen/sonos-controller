@@ -116,3 +116,35 @@ function uiUpdateCurrentSong() {
 	uri:"x-sonos-spotify:spotify%3atrack%3a5A1u2GMvgMOMECWuYRBNc1?sid=9&flags=8224&sn=1"
 	*/
 }
+
+
+$(document).on('click', '.play-controls .play-pause', function(e) {
+	if(!player) return;
+
+	if(player.state.playbackState == "PLAYING") {
+		player.pause();
+		$(this).removeClass('play').addClass('pause');
+	}
+	else {
+		player.play();
+		$(this).removeClass('pause').addClass('play');
+	}
+});
+
+$(document).on('click', '.play-controls .prev', function(e) {
+	if(!player) return;
+	player.previousTrack();
+});
+
+$(document).on('click', '.play-controls .next', function(e) {
+	if(!player) return;
+	player.nextTrack();
+});
+
+$(document).on('click', '.time-bar', function(event) {
+	if(!player) return;
+	var percentage = event.offsetX / $(this).width();
+	var val = Math.round(percentage*player.state.currentTrack.duration);
+	console.log("scrolling to " + val);
+	player.timeSeek(val);
+});

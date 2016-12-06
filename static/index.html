@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>SONOS</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- Insert this line above script imports  -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -33,7 +33,7 @@
       </div>
 
 
-      <div class="col col1-6">
+      <div class="col col1-6" style="height: calc(100vh - 163px);">
         <h2>Now playing</h2>
         <div class="sec-now-playing">
           <div class="coverart-large"></div>
@@ -79,9 +79,28 @@
     <div class="bottombar">
       <div class="coverart-small"></div>
       <div class="play-controls">
-        <div class="prev"></div>
-        <div class="play-pause play"></div>
-        <div class="next"></div>
+        <div class="prev">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path d="M95 5 L50 50 L95 95" />
+            <path d="M65 5 L20 50 L65 95" />
+          </svg>
+        </div>
+        <div class="play-pause play">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" />
+          </svg>
+          <div class="animatable">
+            <span class="l1"></span>
+            <span class="l2"></span>
+            <span class="l3"></span>
+          </div>
+        </div>
+        <div class="next">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path d="M5  5 L50 50 L5  95" />
+            <path d="M35 5 L80 50 L35 95" />
+          </svg>
+        </div>
       </div>
     </div>
   </body>
