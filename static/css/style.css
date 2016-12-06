@@ -1,0 +1,172 @@
+@font-face {
+    font-family: sonos;
+    src: url(../ttf/sonos-logo.ttf);
+}
+
+body {
+    background-color: #202020;
+    color: #FFF;
+    font-family: "Neue Helvetica W02","Helvetica Neue",Helvetica,Arial,sans-serif;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+}
+
+h2 {
+    border-bottom: 1px solid #FFFFFF;
+    padding-bottom: 8px;
+    display: inline-block;
+    width: 100%;
+    text-transform: capitalize;
+}
+
+h3 {
+    margin: 0;
+}
+
+span {
+    color: #CECECE;
+}
+
+.col:first-child {
+    margin-left: 0;
+}
+
+.col:last-child {
+    margin-right: 0;
+}
+
+.col {
+    margin: 0 2%;
+    float: left;
+}
+
+.col1-3 {
+    width: 22%;
+}
+
+.col1-6 {
+    width: 48%;
+}
+
+.gradient-bar {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #37265c, #d01f27);
+}
+
+
+.topbar {
+    background-color: #282828;
+    overflow: hidden;
+}
+
+/* #37265c - #d01f27*/
+
+.topbar h1 {
+    font-family: sonos;
+    font-weight: lighter;
+    letter-spacing: .25rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.content {
+    width: 92%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.room {
+    border-bottom: 1px solid #CECECE;
+    padding-bottom: 12px;
+}
+
+.bottombar {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to right, #37265c, #d01f27);
+    box-shadow: 0 -16px 82px 3px #202020;
+}
+
+.coverart-small,
+.coverart-large {
+    background-image: url(../img/album-placeholder.png);
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.sec-now-playing > * {
+    float: left;
+    width: 48%;
+    min-height: 180px;
+}
+.sec-now-playing > *:first-child {
+    margin-right: 4%;
+}
+
+.sec-now-playing .info span {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.queue-list {
+    margin-top: -20px;
+    overflow-y: scroll;
+    height: calc(100vh - 583px);
+}
+
+.queue-item {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px solid #3F3F3F;
+}
+
+.queue-item > img {
+    height: 80px
+}
+
+.queue-item .info {
+    position: absolute;
+    left: 100px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 40px;
+}
+
+.time-bar {
+    height: 4px;
+    width: 100%;
+    background: white;
+    position: fixed;
+    bottom: 100px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.time-bar .passed {
+    background: #00B2EC;
+    width: 0%;
+    height: 100%;
+    transition: 1s linear;
+}
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {background: #282828;}
+ 
+::-webkit-scrollbar-thumb {
+    background: #3f3f3f;
+}

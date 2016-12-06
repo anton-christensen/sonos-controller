@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <script src="js/helpers.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/js.js"></script>
+    <script src="js/sonos-manager.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+  </head>
+  <body>
+    <div class="topbar">
+      <h1>SONOS</h1>
+    </div>
+    <div class="gradient-bar"></div>
+    <div class="content row">
+
+      <div class="col col1-3">
+        <h2>Rooms</h2>
+        <div class="room-list">
+          <div class="room">
+            <h3>Bedroom</h3>
+            <div class="icon icon-equalizer"></div><span>Some song - Some artist</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col col1-6">
+        <h2>Now playing</h2>
+        <div class="sec-now-playing">
+          <div class="coverart-large"></div>
+          <div class="info">
+            <h3>Track</h3>
+            <span class="track">Track name</span>
+            <h3>Artist</h3>
+            <span class="artist">Artist name</span>
+            <h3>Album</h3>
+            <span class="album">Album name</span>
+          </div>
+        </div>
+
+        <h2>Queue</h2>
+        <div class="queue-list">
+          <div class="queue-item">
+            <img src="img/album-placeholder.png" class="queue-cover" height="80">
+            <div class="info">
+              <h3 class="track-title">Track Title</h3>
+              <span class="track-artist">Track artist</span>
+            </div>
+          </div>
+          <div class="queue-item">
+            <img src="img/album-placeholder.png" class="queue-cover" height="80">
+            <div class="info">
+              <h3 class="track-title">Track Title</h3>
+              <span class="track-artist">Track artist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col col1-3">
+        <h2>Search</h2>
+      </div>
+
+    </div>
+
+    <div class="time-bar">
+      <div class="passed"></div>
+    </div>
+    <div class="bottombar">
+      <div class="coverart-small"></div>
+      <div class="play-controls">
+        <div class="prev"></div>
+        <div class="play-pause play"></div>
+        <div class="next"></div>
+      </div>
+    </div>
+  </body>
+</html>

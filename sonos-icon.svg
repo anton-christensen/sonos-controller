@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   id="svg2"
+   viewBox="0 0 1024 1024"
+   height="1024"
+   width="1024">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient5604">
+      <stop
+         id="stop5606"
+         offset="0"
+         style="stop-color:#37265c;stop-opacity:1" />
+      <stop
+         id="stop5608"
+         offset="1"
+         style="stop-color:#d01f27;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient5598">
+      <stop
+         id="stop5600"
+         offset="0"
+         style="stop-color:#d45500;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="translate(0,2)"
+       gradientUnits="userSpaceOnUse"
+       y2="538.36211"
+       x2="1026"
+       y1="538.36211"
+       x1="2"
+       id="linearGradient5610"
+       xlink:href="#linearGradient5604" />
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-28.362114)"
+     id="layer1">
+    <rect
+       rx="1648.569"
+       ry="1648.569"
+       y="28.362114"
+       x="2"
+       height="1024"
+       width="1024"
+       id="rect4136"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:url(#linearGradient5610);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <text
+       id="text5612"
+       y="619.20001"
+       x="511.20898"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:sonos-logo-regular;-inkscape-font-specification:sonos-logo-regular;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         dx="0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:180px;font-family:sonos-logo-regular;-inkscape-font-specification:sonos-logo-regular;text-align:center;letter-spacing:25px;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         y="619.20001"
+         x="516.20898"
+         id="tspan5614">SONOS</tspan></text>
+    <path
+       transform="translate(0,28.362114)"
+       id="path4281"
+       d="M 158.62695 879.03516 C 250.5828 967.58631 375.6666 1022 514 1022 C 797.648 1022 1026 793.648 1026 510 C 1026 348.30553 951.72617 204.66351 835.37305 110.96484 C 837.69339 113.19928 840.08947 115.3551 842.36719 117.63281 C 848.15119 123.41681 853.79711 129.33881 859.29883 135.39453 C 864.80055 141.45025 870.15831 147.6382 875.36719 153.95508 C 880.57606 160.27195 885.63555 166.71769 890.54102 173.28516 C 895.44648 179.85262 900.19756 186.54211 904.78906 193.34961 C 909.38056 200.15711 913.81311 207.08217 918.08008 214.11914 C 922.34705 221.15611 926.44898 228.30467 930.38086 235.56055 C 934.31273 242.81642 938.07394 250.18031 941.66016 257.64453 C 945.24637 265.10875 948.65867 272.67394 951.88867 280.33594 C 955.11867 287.99794 958.16803 295.75625 961.03125 303.60547 C 963.89447 311.45469 966.57077 319.39405 969.05664 327.41992 C 971.54252 335.4458 973.83758 343.55803 975.93555 351.75 C 978.03352 359.94197 979.93527 368.215 981.63477 376.5625 C 983.33427 384.91 984.83063 393.33175 986.12109 401.82422 C 987.41156 410.31669 988.49631 418.87898 989.36719 427.50586 C 990.23806 436.13273 990.89522 444.82545 991.33594 453.57617 C 991.77666 462.32689 992 471.136 992 480 C 992 488.864 991.77666 497.67311 991.33594 506.42383 C 990.89522 515.17455 990.23806 523.86727 989.36719 532.49414 C 988.49631 541.12102 987.41156 549.68331 986.12109 558.17578 C 984.83063 566.66825 983.33427 575.09 981.63477 583.4375 C 979.93527 591.785 978.03352 600.05803 975.93555 608.25 C 973.83758 616.44197 971.54252 624.5542 969.05664 632.58008 C 966.57077 640.60595 963.89447 648.54531 961.03125 656.39453 C 958.16803 664.24375 955.11867 672.00206 951.88867 679.66406 C 948.65867 687.32606 945.24637 694.89125 941.66016 702.35547 C 938.07394 709.81969 934.31273 717.18358 930.38086 724.43945 C 926.44898 731.69533 922.34705 738.84389 918.08008 745.88086 C 913.81311 752.91783 909.38056 759.84289 904.78906 766.65039 C 900.19756 773.45789 895.44648 780.14738 890.54102 786.71484 C 885.63555 793.28231 880.57606 799.72805 875.36719 806.04492 C 870.15831 812.3618 864.80055 818.54975 859.29883 824.60547 C 853.79711 830.66119 848.15119 836.58319 842.36719 842.36719 C 836.58319 848.15119 830.66119 853.79711 824.60547 859.29883 C 818.54975 864.80055 812.3618 870.15831 806.04492 875.36719 C 799.72805 880.57606 793.28231 885.63555 786.71484 890.54102 C 780.14738 895.44648 773.45789 900.19756 766.65039 904.78906 C 759.84289 909.38056 752.91783 913.81311 745.88086 918.08008 C 738.84389 922.34705 731.69533 926.44898 724.43945 930.38086 C 717.18358 934.31273 709.81969 938.07394 702.35547 941.66016 C 694.89125 945.24637 687.32606 948.65867 679.66406 951.88867 C 672.00206 955.11867 664.24375 958.16803 656.39453 961.03125 C 648.54531 963.89447 640.60595 966.57077 632.58008 969.05664 C 624.5542 971.54252 616.44197 973.83758 608.25 975.93555 C 600.05803 978.03352 591.785 979.93527 583.4375 981.63477 C 575.09 983.33427 566.66825 984.83063 558.17578 986.12109 C 549.68331 987.41156 541.12102 988.49631 532.49414 989.36719 C 523.86727 990.23806 515.17455 990.89522 506.42383 991.33594 C 497.67311 991.77666 488.864 992 480 992 C 471.136 992 462.32689 991.77666 453.57617 991.33594 C 444.82545 990.89522 436.13273 990.23806 427.50586 989.36719 C 418.87898 988.49631 410.31669 987.41156 401.82422 986.12109 C 393.33175 984.83063 384.91 983.33427 376.5625 981.63477 C 368.215 979.93527 359.94197 978.03352 351.75 975.93555 C 343.55803 973.83758 335.4458 971.54252 327.41992 969.05664 C 319.39405 966.57077 311.45469 963.89447 303.60547 961.03125 C 295.75625 958.16803 287.99794 955.11867 280.33594 951.88867 C 272.67394 948.65867 265.10875 945.24637 257.64453 941.66016 C 250.18031 938.07394 242.81642 934.31273 235.56055 930.38086 C 228.30467 926.44898 221.15611 922.34705 214.11914 918.08008 C 207.08217 913.81311 200.15711 909.38056 193.34961 904.78906 C 186.54211 900.19756 179.85262 895.44648 173.28516 890.54102 C 168.30508 886.82122 163.46367 882.93015 158.62695 879.03516 z "
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:0.20657277;fill-rule:nonzero;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+  </g>
+</svg>
