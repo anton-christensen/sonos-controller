@@ -85,9 +85,10 @@ function uiUpdateTime() {
 }
 
 function uiUpdateQueue() {
+	if(!player) return;
 	var list = $('.queue-list');
 	list.empty();
-	for(var i = 0; i < queue.length; i++) {
+	for(var i = player.state.trackNo; i < queue.length; i++) {
 		list.append(`
           <div class="queue-item">
             <img src="${player.baseUrl}${queue[i].albumArtUri}" class="queue-cover" height="80">
