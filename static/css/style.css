@@ -16,6 +16,8 @@ body {
 
 h1,h2,h3,h4,h5,h6 {
     font-weight: normal;
+    -webkit-user-select: none;
+    cursor: default;
 }
 
 h2, .search {
@@ -113,7 +115,7 @@ h4 {
 }
 
 .room {
-    border-bottom: 1px solid #CECECE;
+    border-bottom: 1px solid #3F3F3F;
     padding: 10px 0;
 }
 
@@ -181,6 +183,53 @@ h4 {
     bottom: 0;
     margin: auto;
     height: 40px;
+}
+
+.music-source {
+    display: none;
+}
+
+.music-source.menu {
+    display: initial;
+}
+
+.menu-item-list {
+    margin-top: -14px;
+}
+
+.menu-item {
+    overflow: hidden;
+    height: 18px;
+    padding: 6px 0;
+}
+
+.music-source.menu .menu-item:hover h4 {
+    color: #FF0048;
+}
+
+.music-source.menu .menu-item:hover .arrow {
+    fill: #FF0048;
+}
+
+.music-source.menu .spotify .icon {
+    background-image: url(../img/spotify.svg);
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 10px;
+}
+
+.music-source.menu h4 {
+    float: left;
+}
+
+.music-source.menu .arrow {
+    height: 24px;
+    width: 24px;
+    position: relative;
+    float: right;
+    top: -3px;
+    fill: #CECECE;
 }
 
 .search {
