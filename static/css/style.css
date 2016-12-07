@@ -127,7 +127,12 @@ span {
     height: calc(100vh - 583px);
 }
 
+.queue-item:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
 .queue-item {
+    cursor: pointer;
     position: relative;
     overflow: hidden;
     padding: 10px 0;

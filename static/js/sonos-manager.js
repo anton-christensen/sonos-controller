@@ -90,7 +90,7 @@ function uiUpdateQueue() {
 	list.empty();
 	for(var i = player.state.trackNo; i < queue.length; i++) {
 		list.append(`
-          <div class="queue-item">
+          <div class="queue-item" track-no="${i+1}">
             <img src="${player.baseUrl}${queue[i].albumArtUri}" class="queue-cover" height="80">
             <div class="info">
               <h3 class="track-title">${queue[i].title}</h3>
@@ -118,6 +118,12 @@ function uiUpdateCurrentSong() {
 	*/
 }
 
+
+$(document).on('click', '.queue-item', function(e) {
+	if(!player) return;
+	console.log($(this).attr('track-no'));
+	player.trackSeek($(this).attr('track-no'));
+});
 
 $(document).on('click', '.play-controls .play-pause', function(e) {
 	if(!player) return;
