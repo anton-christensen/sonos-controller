@@ -10,13 +10,15 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
+    min-width: 900px;
+    min-height: 400px;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-weight: normal;
 }
 
-h2 {
+h2, .search {
     border-bottom: 1px solid #FFFFFF;
     padding-bottom: 8px;
     display: inline-block;
@@ -24,11 +26,14 @@ h2 {
     text-transform: capitalize;
 }
 
-h3 {
+h3, h4, h5 {
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: none;
 }
 
-span {
+h4 {
     color: #CECECE;
 }
 
@@ -53,19 +58,40 @@ span {
     width: 48%;
 }
 
+.icon.icon-equalizer {
+    background-image: url(../img/equalizerInactive.svg);
+    height: 12px;
+    width: 12px;
+    float: left;
+    margin: 2px 5px 0 0;
+    background-repeat: no-repeat;
+}
+
+.icon.icon-equalizer.active {
+    background-image: url(../img/equalizer.svg);
+}
+
+.coverart {
+    background-image: url(../img/album-placeholder.png);
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.info {
+
+}
+
 .gradient-bar {
     width: 100%;
     height: 4px;
     background: linear-gradient(to right, #37265c, #d01f27);
 }
 
-
 .topbar {
     background-color: #282828;
     overflow: hidden;
 }
-
-/* #37265c - #d01f27*/
 
 .topbar h1 {
     font-family: sonos;
@@ -81,26 +107,18 @@ span {
     overflow: hidden;
 }
 
+.room-list {
+    margin-top: -20px;
+    white-space: nowrap;
+}
+
 .room {
     border-bottom: 1px solid #CECECE;
-    padding-bottom: 12px;
+    padding: 10px 0;
 }
 
-.bottombar {
-    position: fixed;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    background: linear-gradient(to right, #37265c, #d01f27);
-    box-shadow: 0 -16px 82px 3px #202020;
-}
-
-.coverart-small,
-.coverart-large {
-    background-image: url(../img/album-placeholder.png);
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
+.room.active h3 {
+    color: #FF0048;
 }
 
 .sec-now-playing {
@@ -121,25 +139,38 @@ span {
     display: inline-block;
 }
 
-.queue-list {
+.sec-now-playing .info h4 {
+    margin-bottom: 18pt;
+}
+
+.queue-list, .search-result-list {
     margin-top: -20px;
     overflow-y: scroll;
     height: calc(100vh - 583px);
 }
 
-.queue-item:hover {
+.queue-item:hover,
+.search-result-item:hover {
     background-color: rgba(0,0,0,0.2);
 }
 
-.queue-item {
+.queue-item,
+.search-result-item {
     cursor: pointer;
     position: relative;
     overflow: hidden;
     padding: 10px 0;
     border-bottom: 1px solid #3F3F3F;
+    white-space: nowrap;
 }
 
-.queue-item > img {
+.queue-item > img,
+.search-result-item > img {
+    height: 100%;
+    margin-left: 10px;
+} 
+
+.queue-item {
     height: 80px
 }
 
@@ -150,6 +181,48 @@ span {
     bottom: 0;
     margin: auto;
     height: 40px;
+}
+
+.search {
+    background: none;
+    color: white;
+    font-size: 1.5em;
+    margin: 0.83em 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    outline: 0;
+    background: url(../img/search.svg) no-repeat right;
+    background-size: 30px;
+}
+
+.search-result-list {
+    height: calc(100vh - 221px);
+    white-space: nowrap;
+}
+
+.search-result-item {
+    height: 50px
+}
+
+.search-result-item .info {
+    position: absolute;
+    left: 70px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 40px;
+    white-space: nowrap;
+    width: calc(100% - 70px);
+}
+
+.bottombar {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to right, #37265c, #d01f27);
+    box-shadow: 0 -20px 80px 55px #202020;
 }
 
 .time-bar {
@@ -168,6 +241,28 @@ span {
     height: 100%;
     transition: 1s linear;
 }
+
+.bottombar .currently-playing {
+    height: 100%;
+}
+
+.bottombar .currently-playing .info {
+    position: absolute;
+    top: 0;
+    left: 120px;
+    bottom: 0;
+    margin: auto;
+    height: 60px;
+    max-width: calc(50% - 220px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /* overflow: hidden; */
+}
+
+.bottombar .currently-playing .timestamp {
+    margin-top: 5px;
+}
+
 
 .play-controls {
     position: absolute;
@@ -253,13 +348,83 @@ span {
     transform: translate(2px, 6px) rotate(-34deg) scaleX(1.1);
 }
 
+.sound-controls {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 320px;
+    height: 24px;
+}
+
+.sound-controls > * {
+    height: 100%;
+    width: 24px;
+    float: left;
+    margin: 0 8px;
+    fill: white;
+    cursor: pointer;
+}
+
+.sound-controls > * svg {
+    transition: .2s;
+}
+
+.sound-controls > .active svg {
+    fill: #00b2ec;
+}
+
+.sound-controls > .mute.active .unmuted,
+.sound-controls > .mute .muted {
+    display: none;
+}
+
+.sound-controls > .mute .unmuted,
+.sound-controls > .mute.active .muted {
+    display: block;
+    fill: white;
+}
+
+.sound-controls > .mute .muted {
+    position: relative;
+    left: -4px;
+}
+
+
+.sound-controls .volume-bar {
+    width: 130px;
+    background-color: white;
+    border-radius: 100px;
+    height: 4px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 160px;
+    margin: auto;
+}
+
+.sound-controls .volume-bar .volume {
+    width: 50%;
+    height: 100%;
+    border-radius: 100px;
+    background-color: #00b2ec;
+    transition: .5s;
+}
 
 ::-webkit-scrollbar {
     width: 12px;
 }
  
-::-webkit-scrollbar-track {background: #282828;}
+::-webkit-scrollbar-track {
+    background: none;
+    /*background: #282828;*/
+}
  
 ::-webkit-scrollbar-thumb {
     background: #3f3f3f;
+}
+
+::-webkit-input-placeholder {
+   color: #FFFFFF;
 }

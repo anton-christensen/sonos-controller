@@ -11,6 +11,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/js.js"></script>
     <script src="js/sonos-manager.js"></script>
+    <script src="js/spotify.js"></script>
 
     <!-- Insert this line after script imports -->
     <script>if (window.module) module = window.module;</script>
@@ -35,32 +36,32 @@
 
       <div class="col col1-6" style="height: calc(100vh - 163px);">
         <h2>Now playing</h2>
-        <div class="sec-now-playing">
-          <div class="coverart-large"></div>
+        <div class="sec-now-playing currently-playing">
+          <div class="coverart coverart-large"></div>
           <div class="info">
             <h3>Track</h3>
-            <span class="track">Track name</span>
+            <h4 class="current-track">Track name</h4>
             <h3>Artist</h3>
-            <span class="artist">Artist name</span>
+            <h4 class="current-artist">Artist name</h4>
             <h3>Album</h3>
-            <span class="album">Album name</span>
+            <h4 class="current-album">Album name</h4>
           </div>
         </div>
 
         <h2>Queue</h2>
         <div class="queue-list">
           <div class="queue-item">
-            <img src="img/album-placeholder.png" class="queue-cover" height="80">
+            <img src="img/album-placeholder.png" class="queue-cover">
             <div class="info">
               <h3 class="track-title">Track Title</h3>
-              <span class="track-artist">Track artist</span>
+              <h4 class="track-artist">Track artist</h4>
             </div>
           </div>
           <div class="queue-item">
-            <img src="img/album-placeholder.png" class="queue-cover" height="80">
+            <img src="img/album-placeholder.png" class="queue-cover">
             <div class="info">
               <h3 class="track-title">Track Title</h3>
-              <span class="track-artist">Track artist</span>
+              <h4 class="track-artist">Track artist</h4>
             </div>
           </div>
         </div>
@@ -68,7 +69,23 @@
 
 
       <div class="col col1-3">
-        <h2>Search</h2>
+        <input placeholder="Search" class="search" />
+        <div class="search-result-list">
+          <div class="search-result-item">
+            <img src="img/album-placeholder.png" class="queue-cover">
+            <div class="info">
+              <h3 class="track-title">Track Title</h3>
+              <h4 class="track-artist">Track artist</h4>
+            </div>
+          </div>
+          <div class="search-result-item">
+            <img src="img/album-placeholder.png" class="queue-cover">
+            <div class="info">
+              <h3 class="track-title">Track Title</h3>
+              <h4 class="track-artist">Track artist</h4>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -77,7 +94,16 @@
       <div class="passed"></div>
     </div>
     <div class="bottombar">
-      <div class="coverart-small"></div>
+      
+      <div class="currently-playing">
+        <div class="coverart coverart-small"></div>
+        <div class="info">
+          <h3 class="current-track">Track Title</h3>
+          <h4 class="current-artist">Track Title</h4>
+          <h5 class="timestamp">1:27/3:17</h5>
+        </div>
+      </div>
+
       <div class="play-controls">
         <div class="prev">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -85,7 +111,8 @@
             <path d="M65 5 L20 50 L65 95" />
           </svg>
         </div>
-        <div class="play-pause play">
+
+        <div class="play-pause">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="45" />
           </svg>
@@ -95,6 +122,7 @@
             <span class="l3"></span>
           </div>
         </div>
+        
         <div class="next">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <path d="M5  5 L50 50 L5  95" />
@@ -102,6 +130,37 @@
           </svg>
         </div>
       </div>
+
+
+      <div class="sound-controls">
+        <div class="crossfade">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/>
+          </svg>
+        </div>
+        <div class="shuffle">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+          </svg>
+        </div>
+        <div class="repeat">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+          </svg>
+        </div>
+        <div class="mute">
+          <svg class="unmuted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          </svg>
+          <svg class="muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+          </svg>
+        </div>
+        <div class="volume-bar">
+          <div class="volume"></div>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>

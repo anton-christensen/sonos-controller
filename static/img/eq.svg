@@ -1,0 +1,23 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <!-- <path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"/> -->
+    <path d="M1  22 h4 v-4   h-4 v4  z"/>
+    <path d="M7  22 h4 v-20  h-4 v20 z"/>
+    <path d="M13 22 h4 v-11  h-4 v11 z"/>
+    <path d="M19 22 h4 v-11  h-4 v11 z"/>
+</svg>
+
+// 1
+// 18 8  9  13
+M1 22 h4 v-18 h-4 v18 z;M1 22 h4 v-8 h-4 v8 z;M1 22 h4 v-9 h-4 v9 z;M1 22 h4 v-13 h-4 v13 z
+
+// 2
+// 14 19 17 5
+M7 22 h4 v-14 h-4 v14 z;M7 22 h4 v-19 h-4 v19 z;M7 22 h4 v-17 h-4 v17 z;M7 22 h4 v-5 h-4 v5 z
+
+// 3
+// 4 20 16 17
+M13 22 h4 v-4 h-4 v4 z;M13 22 h4 v-20 h-4 v20 z;M13 22 h4 v-16 h-4 v16 z;M13 22 h4 v-17 h-4 v17 z
+
+// 4
+// 10 8 10 4
+M19 22 h4 v-10 h-4 v10 z;M19 22 h4 v-8 h-4 v8 z;M19 22 h4 v-10 h-4 v10 z;M19 22 h4 v-4 h-4 v4 z;

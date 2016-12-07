@@ -1,0 +1,22 @@
+<svg version="1.1" viewBox="0 0 24 24" fill="#fff" 
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="r1">
+      <animate attributeName="d" values="M1 22 h4 v-18 h-4 v18 z;M1 22 h4 v-8 h-4 v8 z;M1 22 h4 v-11 h-4 v11 z;M1 22 h4 v-13 h-4 v13 z;M1 22 h4 v-18 h-4 v18 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path id="r2">
+      <animate attributeName="d" values="M7 22 h4 v-14 h-4 v14 z;M7 22 h4 v-19 h-4 v19 z;M7 22 h4 v-10 h-4 v10 z;M7 22 h4 v-5 h-4 v5 z;M7 22 h4 v-14 h-4 v14 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path id="r3">
+      <animate attributeName="d" values="M13 22 h4 v-4 h-4 v4 z;M13 22 h4 v-20 h-4 v20 z;M13 22 h4 v-9 h-4 v9 z;M13 22 h4 v-17 h-4 v17 z;M13 22 h4 v-4 h-4 v4 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path id="r4">
+      <animate attributeName="d" values="M19 22 h4 v-10 h-4 v10 z;M19 22 h4 v-8 h-4 v8 z;M19 22 h4 v-14 h-4 v14 z;M19 22 h4 v-4 h-4 v4 z;M19 22 h4 v-10 h-4 v10 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </defs>
+  <use xlink:href="#r1"/>
+  <use xlink:href="#r2"/>
+  <use xlink:href="#r3"/>
+  <use xlink:href="#r4"/>
+</svg>
