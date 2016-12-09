@@ -157,11 +157,47 @@ function uiUpdateQueue() {
 	}
 }
 
+function uriType(uri) {
+	if(uri.indexOf("spotify") != -1 && 
+		uri.indexOf("playlist") != -1)
+		return "SPOTIFY.PLAYLIST";
+}
+
 function uiUpdateFavorites() {
 	discovery.getFavorites().then(f => {
 		favorites = f;
-		// update ui list
 		console.log(favorites);
+
+		var list = $('.music-source.favorites .song-list');
+		list.empty();
+		
+
+		for(var i = 0; i < favorites.length; i++) {
+			var fav = favorites[i];
+
+			if(uriType(fav.uri) == "SPOTIFY.PLAYLIST")
+				fav.artist = "Spotify playlist";
+
+			if(fav.artist == undefined) fav.artist = "";
+
+			list.append(`
+	            <div class="song-item list-item" index="${i}">
+	              <img src="${fav.albumArtUri}" class="album-cover">
+	              <div class="info">
+	                <h3 class="track-title">${fav.title}</h3>
+	                <h4 class="track-artist">${fav.artist}</h4>
+	              </div>
+	            </div>`);
+		}
+		/*
+		album - undefined
+		albumArtUri - "https://i.scdn.co/image/19970404b9d849956f085f4b2175f06c73dc362c"
+		albumTrackNumber - undefined
+		artist - undefined
+		metadata - "<DIDL-Lite xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp/" xmlns:r="urn:schemas-rinconnetworks-com:metadata-1-0/" xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/"><item id="00032020spotify%3atrack%3a2M9ro2krNb7nr7HSprkEgo" parentID="00032020spotify%3atrack%3a2M9ro2krNb7nr7HSprkEgo" restricted="true"><dc:title>Fast Car</dc:title><upnp:class>object.item.audioItem.musicTrack</upnp:class><desc id="cdudn" nameSpace="urn:schemas-rinconnetworks-com:metadata-1-0/">SA_RINCON2311_X_#Svc2311-0-Token</desc></item></DIDL-Lite>"
+		title - "Fast Car"
+		uri - "x-sonos-spotify:spotify%3atrack%3a2M9ro2krNb7nr7HSprkEgo?sid=9&flags=8224&sn=1"
+		*/
 	});
 }
 
@@ -234,6 +270,24 @@ $(document).on('click', '.sec-music-source .return.active', function(e) {
 		$('.music-source.menu').fadeIn();
 	});
 });
+
+$(document).on('click', '.music-source.favorites .song-item', function(e) {
+	var index = $(this).attr('index');
+	if(index == undefined || !player) return;
+
+	if(uriType(favorites[index].uri) == "SPOTIFY.PLAYLIST") {
+		player.clearQueue()
+			.then(() => player.addURIToQueue(favorites[index].uri,favorites[index].metadata, true))
+			.then(() => player.play());
+	}
+	else {
+		// insert as next track in queue and play next.
+		player.addURIToQueue(favorites[index].uri,favorites[index].metadata, true)
+			.then(() => player.nextTrack());
+	}
+});
+
+
 
 $(document).on('click', '.time-bar', function(event) {
 	if(!player) return;
