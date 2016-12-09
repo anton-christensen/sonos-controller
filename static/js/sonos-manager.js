@@ -7,6 +7,8 @@ const settings = {
 
 var discovery = new SonosDiscovery(settings);
 var queue = [];
+var favorites = [];
+var playlists = [];
 var player;
 
 discovery.on('topology-change', function (data) {
@@ -20,10 +22,15 @@ discovery.on('transport-state', function (data) {
 	console.log("EVENT: transport-state");
 	console.log(data);
 
-	// player = data;
+
 	uiUpdateRoomList();
+
 	uiUpdateCurrentSong();
 	updateQueue();
+
+	uiUpdateFavorites();
+	uiUpdatePlaylists();
+
 	uiUpdatePlayPause();
 	uiUpdateSoundControls();
 });
@@ -93,32 +100,25 @@ function updateQueue() {
 
 
 
-setInterval(uiUpdateTime, 1000);
+function uiUpdateRoomList() {
+	var groups = discovery.zones;
+	var domList = $('.room-list');
+	domList.empty();
+	for(var i = 0; i < groups.length; i++) {
+		var group = groups[i];
+		var classes = "";
+		var playing = (group.coordinator.state.playbackState == "PLAYING" ? " active" : "")
+		if(player && group.coordinator.uuid == player.uuid) {
+			classes += " active";
+		}
 
-function zpad(time) {
-	return ("00"+time).substr(-2);
-}
 
-function uiUpdateTime() {
-	if(!player) return;
-	var percentage = player.state.elapsedTime / player.state.currentTrack.duration;
-	$('.time-bar .passed').width((percentage*100)+"%");
-	$('.timestamp').html(`${Math.floor(player.state.elapsedTime/60)}:${zpad(player.state.elapsedTime%60)}/${Math.floor(player.state.currentTrack.duration/60)}:${zpad(player.state.currentTrack.duration%60)}`)
-}
-
-function uiUpdateQueue() {
-	if(!player) return;
-	var list = $('.queue-list');
-	list.empty();
-	for(var i = player.state.trackNo; i < queue.length; i++) {
-		list.append(`
-          <div class="queue-item" track-no="${i+1}">
-            <img src="${player.baseUrl}${queue[i].albumArtUri}" class="queue-cover">
-            <div class="info">
-              <h3 class="track-title">${queue[i].title}</h3>
-              <h4 class="track-artist">${queue[i].artist}</h4>
-            </div>
-          </div>`);
+		domList.append(`
+			<div class="room list-item${classes}" uuid="${group.coordinator.uuid}">
+            	<h3>${group.coordinator.roomName}</h3>
+            	<div class="icon icon-equalizer${playing}"></div><h4>${group.coordinator.state.currentTrack.title} - ${group.coordinator.state.currentTrack.artist}</h4>
+          	</div>
+        `);
 	}
 }
 
@@ -141,6 +141,49 @@ function uiUpdateCurrentSong() {
 	*/
 }
 
+function uiUpdateQueue() {
+	if(!player) return;
+	var list = $('.queue-list');
+	list.empty();
+	for(var i = player.state.trackNo; i < queue.length; i++) {
+		list.append(`
+          <div class="queue-item list-item" track-no="${i+1}">
+            <img src="${player.baseUrl}${queue[i].albumArtUri}" class="album-cover">
+            <div class="info">
+              <h3 class="track-title">${queue[i].title}</h3>
+              <h4 class="track-artist">${queue[i].artist}</h4>
+            </div>
+          </div>`);
+	}
+}
+
+function uiUpdateFavorites() {
+	discovery.getFavorites().then(f => {
+		favorites = f;
+		// update ui list
+		console.log(favorites);
+	});
+}
+
+function uiUpdatePlaylists() {
+	discovery.getPlaylists().then(p => {
+		playlists = p;
+		// update ui list
+		console.log(playlists);
+	});
+}
+
+setInterval(uiUpdateTime, 1000);
+function zpad(time) {
+	return ("00"+time).substr(-2);
+}
+function uiUpdateTime() {
+	if(!player) return;
+	var percentage = player.state.elapsedTime / player.state.currentTrack.duration;
+	$('.time-bar .passed').width((percentage*100)+"%");
+	$('.timestamp').html(`${Math.floor(player.state.elapsedTime/60)}:${zpad(player.state.elapsedTime%60)}/${Math.floor(player.state.currentTrack.duration/60)}:${zpad(player.state.currentTrack.duration%60)}`)
+}
+
 function uiUpdatePlayPause() {
 	if(!player) return;
 
@@ -149,28 +192,6 @@ function uiUpdatePlayPause() {
 	}
 	else {
 		$(".play-controls .play-pause").removeClass('pause').addClass('play');
-	}
-}
-
-function uiUpdateRoomList() {
-	var groups = discovery.zones;
-	var domList = $('.room-list');
-	domList.empty();
-	for(var i = 0; i < groups.length; i++) {
-		var group = groups[i];
-		var classes = "";
-		var playing = (group.coordinator.state.playbackState == "PLAYING" ? " active" : "")
-		if(player && group.coordinator.uuid == player.uuid) {
-			classes += " active";
-		}
-
-
-		domList.append(`
-			<div class="room${classes}" uuid="${group.coordinator.uuid}">
-            	<h3>${group.coordinator.roomName}</h3>
-            	<div class="icon icon-equalizer${playing}"></div><h4>${group.coordinator.state.currentTrack.title} - ${group.coordinator.state.currentTrack.artist}</h4>
-          	</div>
-        `);
 	}
 }
 
@@ -186,10 +207,32 @@ function uiUpdateSoundControls() {
 }
 
 
+
 $(document).on('click', '.queue-item', function(e) {
 	if(!player) return;
 	console.log($(this).attr('track-no'));
 	player.trackSeek($(this).attr('track-no'));
+});
+
+$(document).on('click', '.menu-item-list .menu-item', function(e) {
+	var classList = $(this).attr('class').split(/\s+/);
+	$.each(classList, function(index, item) {
+		if ($('.music-source.'+item).length == 1) {
+			$('.sec-music-source .return').toggleClass('active', true);
+			$('.music-source.menu').fadeOut(function() {
+				$('.music-source.'+item).fadeIn();
+				$('.music-source.'+item).toggleClass('active', true);
+			})
+		}
+	});
+});
+
+$(document).on('click', '.sec-music-source .return.active', function(e) {
+	$(this).toggleClass('active', false);
+	$('.music-source.active').fadeOut(function() {
+		$(this).removeClass('active');
+		$('.music-source.menu').fadeIn();
+	});
 });
 
 $(document).on('click', '.time-bar', function(event) {

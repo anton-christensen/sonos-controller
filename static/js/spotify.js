@@ -12,7 +12,7 @@ $(document).on('input', '.search', function() {
 		function(data) {
 			console.log(data);
 
-			var list = $('.search-result-list');
+			var list = $('.song-list');
 			list.empty();
 			var tracks = data.tracks.items;
 			for(var i = 0; i < tracks.length; i++) {
@@ -31,8 +31,8 @@ $(document).on('input', '.search', function() {
 				}
 
 				list.append(`
-					<div class="search-result-item">
-						<img src="${image}" class="queue-cover">
+					<div class="song-item list-item">
+						<img src="${image}" class="album-cover">
 						<div class="info">
 							<h3 class="track-title">${track.name}</h3>
 							<h4 class="track-artist">${artists}</h4>

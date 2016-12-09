@@ -25,8 +25,8 @@
 
       <div class="col col1-3">
         <h2>Rooms</h2>
-        <div class="room-list">
-          <div class="room">
+        <div class="room-list list">
+          <div class="room list-item">
             <h3>Bedroom</h3>
             <div class="icon icon-equalizer"></div><span>Some song - Some artist</span>
           </div>
@@ -49,16 +49,16 @@
         </div>
 
         <h2>Queue</h2>
-        <div class="queue-list">
-          <div class="queue-item">
-            <img src="img/album-placeholder.png" class="queue-cover">
+        <div class="queue-list list">
+          <div class="queue-item list-item">
+            <img src="img/album-placeholder.png" class="album-cover">
             <div class="info">
               <h3 class="track-title">Track Title</h3>
               <h4 class="track-artist">Track artist</h4>
             </div>
           </div>
-          <div class="queue-item">
-            <img src="img/album-placeholder.png" class="queue-cover">
+          <div class="queue-item list-item">
+            <img src="img/album-placeholder.png" class="album-cover">
             <div class="info">
               <h3 class="track-title">Track Title</h3>
               <h4 class="track-artist">Track artist</h4>
@@ -69,25 +69,27 @@
 
 
       <div class="col col1-3 sec-music-source">
-
+        <svg class="return" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+        </svg>
         <div class="music-source menu">
           <h2>Music source</h2>
-          <div class="menu-item-list">
-            <div class="menu-item spotify">
+          <div class="menu-item-list list">
+            <div class="menu-item list-item spotify">
               <div class="icon"></div>
               <h4>Spotify</h4>
               <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
               </svg>
             </div>
-            <div class="menu-item favorites">
+            <div class="menu-item list-item favorites">
               <div class="icon"></div>
               <h4>Favorites</h4>
               <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
               </svg>
             </div>
-            <div class="menu-item playlists">
+            <div class="menu-item list-item playlists">
               <div class="icon"></div>
               <h4>Playlists</h4>
               <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -99,16 +101,16 @@
 
         <div class="music-source spotify">
           <input placeholder="Search" class="search" />
-          <div class="search-result-list">
-            <div class="search-result-item">
-              <img src="img/album-placeholder.png" class="queue-cover">
+          <div class="song-list list">
+            <div class="song-item list-item">
+              <img src="img/album-placeholder.png" class="album-cover">
               <div class="info">
                 <h3 class="track-title">Track Title</h3>
                 <h4 class="track-artist">Track artist</h4>
               </div>
             </div>
-            <div class="search-result-item">
-              <img src="img/album-placeholder.png" class="queue-cover">
+            <div class="song-item list-item">
+              <img src="img/album-placeholder.png" class="album-cover">
               <div class="info">
                 <h3 class="track-title">Track Title</h3>
                 <h4 class="track-artist">Track artist</h4>
@@ -116,8 +118,48 @@
             </div>
           </div>
         </div>
-      </div>
 
+        <div class="music-source favorites">
+          <h2>Favorites</h2>
+          <div class="song-list list">
+            <div class="song-item list-item">
+              <img src="img/album-placeholder.png" class="album-cover">
+              <div class="info">
+                <h3 class="track-title">Track Title</h3>
+                <h4 class="track-artist">Track artist</h4>
+              </div>
+            </div>
+            <div class="song-item list-item">
+              <img src="img/album-placeholder.png" class="album-cover">
+              <div class="info">
+                <h3 class="track-title">Track Title</h3>
+                <h4 class="track-artist">Track artist</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="music-source playlists">
+          <h2>Playlists</h2>
+          <div class="song-list list">
+            <div class="song-item list-item">
+              <img src="img/album-placeholder.png" class="album-cover">
+              <div class="info">
+                <h3 class="track-title">Track Title</h3>
+                <h4 class="track-artist">Track artist</h4>
+              </div>
+            </div>
+            <div class="song-item list-item">
+              <img src="img/album-placeholder.png" class="album-cover">
+              <div class="info">
+                <h3 class="track-title">Track Title</h3>
+                <h4 class="track-artist">Track artist</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="time-bar">
