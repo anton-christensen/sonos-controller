@@ -282,7 +282,7 @@ $(document).on('click', '.music-source.favorites .song-item', function(e) {
 	}
 	else {
 		// insert as next track in queue and play next.
-		player.addURIToQueue(favorites[index].uri,favorites[index].metadata, true)
+		player.addURIToQueue(favorites[index].uri, favorites[index].metadata, true, player.state.trackNo+1)
 			.then(() => player.nextTrack());
 	}
 });
