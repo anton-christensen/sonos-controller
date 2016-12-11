@@ -10,6 +10,12 @@ var queue = [];
 var favorites = [];
 var playlists = [];
 var player;
+var spotify;
+
+discovery.on('initialized', function(data) {
+	console.log("EVENT: initialized");
+	if(!spotify) spotify = new Spotify(discovery);
+});
 
 discovery.on('topology-change', function (data) {
 	console.log("EVENT: topology-change");
@@ -287,7 +293,54 @@ $(document).on('click', '.music-source.favorites .song-item', function(e) {
 	}
 });
 
+$(document).on('input', '.music-source.spotify .search', function() {
+	if(!spotify) return;
+	spotify.doSongSearch($(this).val())
+		.then((results) => {
+			var list = $('.song-list');
+			list.empty();
+			
+			results.forEach(function(track, i) {
+				list.append(`
+					<div class="song-item list-item" index="${i}">
+						<img src="${track.albumArtUri}" class="album-cover">
+						<div class="info">
+							<h3 class="track-title">${track.name}</h3>
+							<h4 class="track-artist">${track.artist}</h4>
+						</div>
+					</div>`
+				);
+			});
+		});
+});
 
+
+$(document).on('click', '.music-source.spotify .song-item', function(e) {
+	var index = $(this).attr('index');
+	if(index == undefined || !player || !spotify) return;
+
+	var songList = spotify.resultList;
+
+	// insert as next track in queue and play next.
+	player.addURIToQueue(songList[index].uri, songList[index].metadata, true, player.state.trackNo+1)
+		.then(() => player.nextTrack());
+});
+
+$(document).on('click', '.music-source.favorites .song-item', function(e) {
+	var index = $(this).attr('index');
+	if(index == undefined || !player) return;
+
+	if(uriType(favorites[index].uri) == "SPOTIFY.PLAYLIST") {
+		player.clearQueue()
+			.then(() => player.addURIToQueue(favorites[index].uri,favorites[index].metadata, true))
+			.then(() => player.play());
+	}
+	else {
+		// insert as next track in queue and play next.
+		player.addURIToQueue(favorites[index].uri, favorites[index].metadata, true, player.state.trackNo+1)
+			.then(() => player.nextTrack());
+	}
+});
 
 $(document).on('click', '.time-bar', function(event) {
 	if(!player) return;
