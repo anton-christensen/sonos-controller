@@ -1,8 +1,14 @@
 const SonosDiscovery = require('sonos-discovery');
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 const http = require('http');
+
+// const http = require('http');
 const settings = {
 	port: 1234,
-	cacheDir: './cache'
+	cacheDir: './static/cache',
+	placeholderAlbumArt: "img/album-placeholder.png"
 }
 
 var discovery = new SonosDiscovery(settings);
@@ -76,9 +82,16 @@ discovery.on('favorites', function (data) {
 });
 
 discovery.on('list-change', function (data) {
-	updateQueue();
 	console.log("EVENT: list-change");
 	console.log(data);
+	switch(data) {
+		case "saved-queues":
+			uiUpdatePlaylists();
+			break;
+		case "favorites":
+			uiUpdateFavorites();
+			break;
+	}
 });
 
 discovery.on('dead', function (data) {
@@ -87,9 +100,9 @@ discovery.on('dead', function (data) {
 });
 
 discovery.on('queue-change', function (player) {
-	updateQueue();
 	console.log("EVENT: queue-change");
 	console.log(player);
+	updateQueue();
 });
 
 function updateTopology(zones) {
@@ -101,6 +114,65 @@ function updateQueue() {
 	player.getQueue().then(q => {
 		queue = q; 
 		uiUpdateQueue();
+	});
+}
+
+function clearCachedAlbumArtUri(filename) {
+	if(filename.indexOf("file://") == 0) {
+		filename = filename.substr(7);
+	}
+	else if (/^\/getaa/.test(filename)) {
+	    // this is a resource, download from player and put in cache folder
+	    var md5url = crypto.createHash('md5').update(filename).digest('hex');
+	    filename = path.join(settings.cacheDir, md5url+".jpg");
+	}
+	else {
+		return;
+	}
+	
+    fs.exists(filename, function (exists) {
+		if (exists) {
+			fs.unlink(filename);
+		}
+	});
+}
+
+function getCachedAlbumArtUri(uri) {
+	return new Promise(function(resolve, reject) {
+		if(!player) {
+			return resolve(settings.placeholderAlbumArt);
+		}
+
+		if (/^\/getaa/.test(uri)) {
+		    // this is a resource, download from player and put in cache folder
+		    var md5url = crypto.createHash('md5').update(uri).digest('hex');
+		    var fileName = path.join(settings.cacheDir, md5url+".jpg");
+
+		    fs.exists(fileName, function (exists) {
+				if (exists) {
+					return resolve("cache/"+md5url+".jpg");
+				}
+				else {
+					var file = fs.createWriteStream(fileName);
+					var request = http.get(player.baseUrl+uri, function(response) {
+						if(response.statusCode == 200) {
+							response.pipe(file);
+						}
+						else {
+							return resolve(player.baseUrl+uri);
+						}
+						
+						response.on('end', function() {
+							return resolve("cache/"+md5url+".jpg");
+				        });
+					});
+				}
+
+	    	});
+		}
+		else {
+			return resolve(uri);
+		}
 	});
 }
 
@@ -147,6 +219,16 @@ function uiUpdateCurrentSong() {
 	uri:"x-sonos-spotify:spotify%3atrack%3a5A1u2GMvgMOMECWuYRBNc1?sid=9&flags=8224&sn=1"
 	*/
 }
+function handleMissingImage(img, uri) {
+	uri = atob(uri);
+	if(img.src.indexOf("/static/cache") >= 0) {
+		// console.log(`broken image: ${img.src}`);
+		clearCachedAlbumArtUri(uri);
+	}
+	img.src=settings.placeholderAlbumArt;
+	// getCachedAlbumArtUri(uri).then((cached) => {img.src = cached});
+	// img.src=`${player.baseUrl}${uri}`;
+}
 
 function uiUpdateQueue() {
 	if(!player) return;
@@ -155,12 +237,23 @@ function uiUpdateQueue() {
 	for(var i = player.state.trackNo; i < queue.length; i++) {
 		list.append(`
           <div class="queue-item list-item" track-no="${i+1}">
-            <img src="${player.baseUrl}${queue[i].albumArtUri}" class="album-cover">
+            <img src="${settings.placeholderAlbumArt}" class="album-cover">
             <div class="info">
               <h3 class="track-title">${queue[i].title}</h3>
               <h4 class="track-artist">${queue[i].artist}</h4>
             </div>
           </div>`);
+
+		(function(index) {
+			getCachedAlbumArtUri(queue[index].albumArtUri)
+				.then((uri) => {
+					var imgelm = $(`.queue-list .queue-item[track-no="${index+1}"] .album-cover`);
+					imgelm.on('error', function() {
+						handleMissingImage(imgelm[0], btoa(uri));
+					});
+					imgelm.attr('src', uri);
+				});
+		}(i));
 	}
 }
 
@@ -173,7 +266,6 @@ function uriType(uri) {
 function uiUpdateFavorites() {
 	discovery.getFavorites().then(f => {
 		favorites = f;
-		console.log(favorites);
 
 		var list = $('.music-source.favorites .song-list');
 		list.empty();
@@ -211,8 +303,24 @@ function uiUpdateFavorites() {
 function uiUpdatePlaylists() {
 	discovery.getPlaylists().then(p => {
 		playlists = p;
-		// update ui list
-		console.log(playlists);
+
+		var list = $('.music-source.playlists .song-list');
+		list.empty();
+
+		for(var i = 0; i < playlists.length; i++) {
+			var plist = playlists[i];
+
+			if(plist.artist == undefined) plist.artist = "";
+
+			list.append(`
+	            <div class="song-item list-item" index="${i}">
+	              <img src="${player.baseUrl}${plist.albumArtUri[0]}" class="album-cover">
+	              <div class="info">
+	                <h3 class="track-title">${plist.title}</h3>
+	                <h4 class="track-artist">${plist.artist}</h4>
+	              </div>
+	            </div>`);
+		}
 	});
 }
 
@@ -253,7 +361,6 @@ function uiUpdateSoundControls() {
 
 $(document).on('click', '.queue-item', function(e) {
 	if(!player) return;
-	console.log($(this).attr('track-no'));
 	player.trackSeek($(this).attr('track-no'));
 });
 
@@ -293,6 +400,16 @@ $(document).on('click', '.music-source.favorites .song-item', function(e) {
 			.then(() => player.nextTrack());
 	}
 });
+
+$(document).on('click', '.music-source.playlists .song-item', function(e) {
+	var index = $(this).attr('index');
+	if(index == undefined || !player) return;
+
+	player.clearQueue()
+		.then(() => player.addURIToQueue(playlists[index].uri,'', true))
+		.then(() => player.play());
+});
+
 
 $(document).on('input', '.music-source.spotify .search', function() {
 	if(!spotify) return;
