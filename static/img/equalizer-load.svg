@@ -1,0 +1,24 @@
+<svg version="1.1" viewBox="-4 -4 32 32" fill="#f0f0f0" 
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="r1">
+      <animate attributeName="d" values="M1 22 h4 v-2 h-4 v2 z;M1 22 h4 v-18 h-4 v18 z;M1 22 h4 v-2 h-4 v2 z;M1 22 h4 v-2 h-4 v2 z;M1 22 h4 v-2 h-4 v2 z;M1 22 h4 v-2 h-4 v2 z;M1 22 h4 v-2 h-4 v2 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path id="r2">
+      <animate attributeName="d" values="M7 22 h4 v-2 h-4 v2 z;M7 22 h4 v-2 h-4 v2 z;M7 22 h4 v-18 h-4 v18 z;M7 22 h4 v-2 h-4 v2 z;M7 22 h4 v-2 h-4 v2 z;M7 22 h4 v-2 h-4 v2 z;M7 22 h4 v-2 h-4 v2 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path id="r3">
+      <animate attributeName="d" values="M13 22 h4 v-2 h-4 v2 z;M13 22 h4 v-2 h-4 v2 z;M13 22 h4 v-2 h-4 v2 z;M13 22 h4 v-18 h-4 v18 z;M13 22 h4 v-2 h-4 v2 z;M13 22 h4 v-2 h-4 v2 z;M13 22 h4 v-2 h-4 v2 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path id="r4">
+      <animate attributeName="d" values="M19 22 h4 v-2 h-4 v2 z;M19 22 h4 v-2 h-4 v2 z;M19 22 h4 v-2 h-4 v2 z;M19 22 h4 v-2 h-4 v2 z;M19 22 h4 v-18 h-4 v18 z;M19 22 h4 v-2 h-4 v2 z;M19 22 h4 v-2 h-4 v2 z" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </defs>
+  <use xlink:href="#r1"/>
+  <use xlink:href="#r2"/>
+  <use xlink:href="#r3"/>
+  <use xlink:href="#r4"/>
+</svg>
+
+

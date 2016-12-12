@@ -15,6 +15,7 @@ var spotify;
 discovery.on('initialized', function(data) {
 	console.log("EVENT: initialized");
 	if(!spotify) spotify = new Spotify(discovery);
+	$('.splash').fadeOut();
 });
 
 discovery.on('topology-change', function (data) {
