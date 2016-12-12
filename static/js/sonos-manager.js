@@ -297,7 +297,7 @@ $(document).on('input', '.music-source.spotify .search', function() {
 	if(!spotify) return;
 	spotify.doSongSearch($(this).val())
 		.then((results) => {
-			var list = $('.song-list');
+			var list = $('.music-source.spotify .song-list');
 			list.empty();
 			
 			results.forEach(function(track, i) {
